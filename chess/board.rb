@@ -42,6 +42,12 @@ class Board
     raise "no piece on starting position" if current_piece.is_a? NullPiece
     #raise "invalid position" unless @grid[end_pos[0]][end_pos[1]].valid_moves.include?(end_pos)
     @grid[end_pos[0]][end_pos[1]] = current_piece
-
   end
+
+  def in_bounds?(pos)
+    row, col = pos
+    row.between?(0, 7) && col.between?(0, 7)
+  end
+
+
 end
