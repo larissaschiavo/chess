@@ -1,4 +1,5 @@
 require_relative "piece.rb"
+require 'singleton'
 
 class NullPiece < Piece
 
@@ -8,15 +9,15 @@ class NullPiece < Piece
   end
 
   def moves
-    nil
+    []
   end
 
-  def color
-    :no_color
-  end
-
+  # def color
+  #   :no_color
+  # end
+  #
   def symbol
-    :null
+    "\u0020"
   end
 
 end

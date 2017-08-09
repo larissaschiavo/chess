@@ -13,4 +13,8 @@ class Bishop < Piece
   def move_dirs
     diagonal_dirs
   end
+
+  def symbol
+    color == :white ? "\u2657" : "\u265D"
+  end
 end

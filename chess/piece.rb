@@ -1,7 +1,8 @@
-require_relative "./board.rb"
+require_relative "board.rb"
 
 class Piece
-attr_reader :pos, :board
+attr_accessor :pos, :board
+attr_reader :color
 
   def initialize(pos, board, color)
     @pos = pos
@@ -12,6 +13,10 @@ attr_reader :pos, :board
   def empty?
   end
 
+  # def inspect
+  #   {:type => self.class, col => @color}
+  # end
+
   def symbol
 
   end
@@ -20,7 +25,7 @@ attr_reader :pos, :board
   end
 
   def to_s
-    return symbol.to_s
+    return " " + symbol.to_s + " "
   end
 
   private
@@ -32,7 +37,10 @@ end
 
 module SlidingPiece
   def moves
-    move_dirs
+    move_dirs.reject do |pos|
+      move_piece = board[pos]
+      move_piece.color == color
+    end
   end
 
   private
@@ -139,4 +147,15 @@ end
 
 
 module SteppingPiece
+
+  def moves
+    move_diffs.reject do |pos|
+      move_piece = board[pos]
+      move_piece.color == color
+    end
+  end
+  private
+  def move_diffs
+  end
+
 end

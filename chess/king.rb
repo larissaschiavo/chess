@@ -1,9 +1,9 @@
 require_relative "piece.rb"
 
-class Knight < Piece
+class King < Piece
   include SteppingPiece
 
-  DELTAS = [[-2, -1], [-2, 1], [-1, -2], [1, -2], [2, -1], [2, 1], [-1, 2], [1, 2]]
+  DELTAS = [[-1, -1], [-1, 0], [-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0, - 1]]
 
   def move_diffs
     coords = DELTAS.map do |delta|
@@ -17,7 +17,7 @@ class Knight < Piece
   end
 
   def symbol
-    color == :white ? "\u2658" : "\u265e"
+    color == :white ? "\u2654" : "\u265A"
   end
 
 

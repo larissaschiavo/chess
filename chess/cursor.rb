@@ -79,9 +79,11 @@ class Cursor
 
     case key
     when :return
-      @cursor_pos
+      @cursor_pos.dup
+      [@cursor_pos[0], @cursor_pos[1]]
     when :space
-      @cursor_pos
+      @cursor_pos.dup
+      [@cursor_pos[0], @cursor_pos[1]]
     when :left
       update_pos(:left)
     when :right
