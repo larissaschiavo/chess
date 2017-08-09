@@ -3,6 +3,8 @@ require "byebug"
 
 class Pawn < Piece
 
+
+
   def initialize(pos, board, color, direction)
     @direction = direction
     super pos, board, color
@@ -14,7 +16,7 @@ class Pawn < Piece
   end
 
   def moves
-    forward_steps
+    forward_steps + side_attacks
   end
 
   protected
@@ -48,8 +50,23 @@ class Pawn < Piece
   end
 
   def side_attacks
-
-
+    side_moves = []
+    if @direction == :down
+      if board[[pos[0]+1, pos[1]+1]].is_a?(NullPiece)
+        side_moves << [pos[0]+1, pos[1]+1]
+      end
+      if board[[pos[0]+1, pos[1]-1]].is_a?(NullPiece)
+        side_moves << [pos[0]+1, pos[1]-1]
+      end
+    elsif @direction == :up
+      if board[[pos[0]-1, pos[1]-1]].is_a?(NullPiece)
+        side_moves << [pos[0]-1, pos[1]-1]
+      end
+      if board[[pos[0]-1, pos[1]+1]].is_a?(NullPiece)
+        side_moves << [pos[0]-1, pos[1]+1]
+      end
+    end
+    side_moves
   end
 
 end
